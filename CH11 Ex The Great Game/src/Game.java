@@ -136,6 +136,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) throws Exception {
+		System.out.println("First Commit Done");
 		// create fonts.
 		new Game();
 	}
