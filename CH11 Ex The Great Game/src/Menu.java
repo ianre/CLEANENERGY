@@ -1,7 +1,10 @@
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -12,21 +15,35 @@ public class Menu {
 	private Game game;
 	private Handler handler;
 	private HUD hud;
+	private Central central;
 	private Random r = new Random();
 	private int endProg = 0;
 	private int selectX, selectY;
+	private boolean overQuit = true;
 
 	public Menu(Central central) {
+		this.central = central;
+	}
+	public void init(){
 		this.game = central.getGame();
 		this.handler = central.getHandler();
 		this.hud = central.getHud();
 	}
 
 	public void cursorUp(){
+		overQuit = false;
 		
 	}
 	
 	public void cursorDown(){
+		overQuit = true;
+	}
+	public void select(){
+		if(overQuit){
+			System.exit(0);
+		} else {
+			game.gameState = STATE.GAME;
+		}
 		
 	}
 
@@ -37,12 +54,24 @@ public class Menu {
 
 	public void render(Graphics g) {
 		if (game.gameState == STATE.MENU) {
-			Font font = new Font("Courier", 1, 50);
+			Font font = new Font("Courier", 1, 22);
 			g.setColor(new Color(240, 255, 230));
-			drawStringP("war",30, 40,  g);
-			drawStringP( "the card game",30, 50, g);
-			drawStringP("start", 30, 60, g);
-			drawStringP("quit", 30, 70, g);
+			drawStringP("war",1, 20,  g);
+			drawStringP( "the card game",6, 40, g);
+			drawStringP("start", 11, 60, g);
+			drawStringP("quit", 16, 80, g);
+			
+			Graphics2D g2 = (Graphics2D) g;
+			Stroke st = g2.getStroke();
+			g2.setStroke(new BasicStroke(20f, 2, 2, 1f) );
+			g2.setColor(game.getRandomColor(1.0f, 0.3f ));
+			if(overQuit)drawRectP(15, 63, 30, 23, g2);
+			else        drawRectP(11, 43, 40, 20, g2);
+			//g2.drawRect((int) x, (int) y, (int) s, (int) s);
+			g2.setStroke(st);
+			g.setColor(game.getRandomColor(1.0f, 1.0f));
+			
+			
 			
 
 		} else if (game.gameState == STATE.END) {
@@ -88,6 +117,14 @@ public class Menu {
 
 		}
 
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Menu [game=" + game + ", handler=" + handler + ", hud=" + hud + ", central=" + central + ", r=" + r
+				+ ", endProg=" + endProg + ", selectX=" + selectX + ", selectY=" + selectY + ", overQuit=" + overQuit
+				+ "]";
 	}
 
 	public void drawRectP(int x, int y, int width, int height, Graphics g) {

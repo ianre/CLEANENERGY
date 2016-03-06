@@ -1,10 +1,13 @@
 
+
 public class Central {
 	public Handler handler;
 	public Game game;
 	public Menu menu;
 	public HUD hud;
 	public int w, h;
+	
+
 	
 	public Central(int w, int h){
 		this.w = w;
@@ -55,6 +58,7 @@ public class Central {
 	public void setHud(HUD hud) {
 		this.hud = hud;
 	}
+	
 	
 
 }

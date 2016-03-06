@@ -20,8 +20,10 @@ public class Game extends Canvas implements Runnable {
 	private HUD hud;
 	private Menu menu;
 	private Central central;
+	private static float colorRadian = 0;
+	public Random rand = new Random();
 
-	public static final int WIDTH = 1500, HEIGHT = WIDTH / 16 * 9;
+	public static final int WIDTH = 1000, HEIGHT = WIDTH / 16 * 9;
 	// Start at the menu
 	public STATE gameState = STATE.MENU;
 
@@ -29,9 +31,14 @@ public class Game extends Canvas implements Runnable {
 
 		central = new Central(WIDTH, HEIGHT);
 		central.setGame(this);
-		hud = new HUD();
+		hud = new HUD(central);
+		central.setHud(hud);
 		handler = new Handler(central);
+		central.setHandler(handler);
 		menu = new Menu(central);
+		central.setMenu(menu);
+		menu.init(); 
+		// Rest of inits
 		// this.addKeyListener(new KeyInput(handler));
 		// Important thing right here.
 		this.addKeyListener(new KeyInput(central));
@@ -103,6 +110,7 @@ public class Game extends Canvas implements Runnable {
 				gameState = STATE.END;
 				handler.killEnemies();
 			}
+			
 		} else if (gameState == STATE.MENU || gameState == STATE.END) {
 			menu.tick();
 		}
@@ -136,7 +144,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("First Commit Done");
+		//System.out.println("First Commit Done");
 		// create fonts.
 		new Game();
 	}
@@ -153,6 +161,46 @@ public class Game extends Canvas implements Runnable {
 		}
 		return null;
 
+	}
+	/*
+	public Color getRandomColor(){
+		colorRadian += 0.00005;
+		if(colorRadian >=1){
+			colorRadian =0;
+		}
+		if(rand.nextBoolean()){
+			Color c = Color.getHSBColor(colorRadian,//random hue, color
+	                0.0f,//full saturation, 1.0 for 'colorful' colors, 0.0 for grey
+	                1.0f //1.0 for bright, 0.0 for black
+	                );
+			
+			return c;
+		} else {
+			Color c = Color.getHSBColor(colorRadian,//random hue, color
+	                1.0f,//full saturation, 1.0 for 'colorful' colors, 0.0 for grey
+	                1.0f //1.0 for bright, 0.0 for black
+	                );
+			
+			return c;
+		}
+		
+	}
+	*/
+	public Color getRandomColor(float sat, float bright){
+		colorRadian += 0.05;
+		if(colorRadian >=1){
+			colorRadian =0;
+		}
+		Color c = Color.getHSBColor(colorRadian,//random hue, color
+	            sat,//full saturation, 1.0 for 'colorful' colors, 0.0 for grey
+	            bright //1.0 for bright, 0.0 for black
+	            );
+		//System.out.println(colorRadian);
+		
+		return c;
+	}
+	public Color getColor(){
+		return Color.RED;
 	}
 
 	public static int clamp(int var, int min, int max) {

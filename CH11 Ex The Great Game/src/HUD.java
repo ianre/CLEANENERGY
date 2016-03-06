@@ -7,9 +7,12 @@ public class HUD {
 	
 	private int score =  0;
 	private int level = 1;
+	private Central central;
 	
-	public HUD (){
+	public HUD (Central central){
+		this.central = central;
 	}
+	
      	
 	public void tick(){
 		HEALTH = Game.clamp(HEALTH, 0, 200);
