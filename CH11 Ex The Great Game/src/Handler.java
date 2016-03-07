@@ -86,24 +86,11 @@ public class Handler {
 		this.object.remove(object);
 	}
 
-	public void setWall() {
-		for (int i = 0; i < object.size(); i++) {
-			GameObject tempObject = object.get(i);
-			if (tempObject.id == ID.PLAYER || tempObject.id == ID.SENTINEL) {
-				tempObject.setVelX(0);
-				tempObject.setVelY(0);
-				tempObject.setX(Game.WIDTH / 2);
-				tempObject.setVelY(Game.HEIGHT / 2);
-			}
-		}
-
-	}
-
 	public void killEnemies() {
 		killing = true;
 		for (int i = 0; i < object.size(); i++) {
 			GameObject tempObject = object.get(i);
-			if (tempObject.id == ID.PLAYER) {
+			if (tempObject.id == ID.Card) {
 				object.clear();
 				if (game.gameState != STATE.END) {
 
