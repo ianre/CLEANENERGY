@@ -43,12 +43,12 @@ public class KeyInput extends KeyAdapter {
 				try {
 					GameObject tempObject = handler.object.get(i);
 
-					if (tempObject.getId() == ID.PLAYER) {
+					//if (tempObject.getId() == ID.PLAYER) {
 
-					}
-					if (tempObject.getId() == ID.SENTINEL) {
+					//}
+					//if (tempObject.getId() == ID.SENTINEL) {
 
-					}
+					//}
 				} catch (NullPointerException ex) {
 					System.err.println("Error int key input class");
 				}
@@ -70,7 +70,7 @@ public class KeyInput extends KeyAdapter {
 			for (int i = 0; i < handler.object.size(); i++) {
 				GameObject tempObject = handler.object.get(i);
 
-				if (tempObject.getId() == ID.PLAYER) {
+				if (tempObject.getId() == ID.Card) {
 					// key events
 					if (key == KeyEvent.VK_W)
 						keyDown[0] = false;// tempObject.setVelY(0);

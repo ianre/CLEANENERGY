@@ -1,4 +1,5 @@
-
+//VERY IMPORTANT
+// TICK DOES NOT USE THE LINKLIST AS PARAMETER
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
