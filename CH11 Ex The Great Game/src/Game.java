@@ -134,7 +134,7 @@ public class Game extends Canvas implements Runnable {
 		if (gameState == STATE.GAME) {
 			hud.render(g);
 
-		} else if (gameState == STATE.MENU || gameState == STATE.HELP || gameState == STATE.END) {
+		} else if (gameState == STATE.MENU || /*gameState == STATE.HELP || */ gameState == STATE.END) {
 			menu.render(g);
 		}
 

@@ -111,11 +111,14 @@ public class Menu {
 			// g.setColor(Color.RED);
 			// g.drawRect(0, 0, (int)(varX*100),(int)(varY * 100));
 
-		} else if (game.gameState == STATE.HELP) {
+		} 
+		/*
+		else if (game.gameState == STATE.HELP) {
 			Font font = new Font("Courier", 1, 50);
 			g.setColor(new Color(240, 255, 230));
 
 		}
+		*/
 
 	}
 	
